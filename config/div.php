@@ -29,3 +29,19 @@ if (isset($_POST['exit'])) {
     header("Location: /index.php");
     exit();
 }
+
+if (isset($_POST['subject'])
+    and isset($_POST['title']) 
+    and isset($_POST['descrioption'])) {
+    if ($_POST['crowdfunding']) $_POST['crowdfunding'] = 1;
+    else $_POST['crowdfunding'] = 0;
+    if (mysqli_query($connection, "INSERT INTO `events` (`login`, `title`, `description`, `crowdfunding`, `subject`) VALUES (
+        '".$_SESSION['login']."', 
+        '".$_POST['title']."', 
+        '".$_POST['descrioption']."', 
+        '".$_POST['crowdfunding']."', 
+        '".$_POST['subject']."')")) {
+        header("Location: /index.php");
+        exit();
+    }
+}
