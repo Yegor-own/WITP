@@ -1,0 +1,84 @@
+.head {
+    padding-top: 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title {
+    margin-right: 2%;
+}
+
+.title h1 {
+    font-size: 50px;
+}
+
+.location {
+    margin-right: 2%;
+}
+
+.location form{
+    display: flex;
+    align-items: center;
+}
+
+#city {
+    border: none;
+    font-size: 20px;
+}
+
+.search {
+    margin-right: 2%;
+}
+
+.search form {
+    padding: 10px;
+    border-radius: 40px;
+    background-color: #efefef;
+    display: flex;
+    align-items: center;
+}
+
+.search form input {
+    height: 40px;
+    border: none;
+    background: none;
+    font-size: 20px;
+    color: grey;
+}
+
+.search form button {
+    border: none;
+    background: none;
+}
+
+
+.auth {
+    text-align: center;
+    display: block;
+    font-size: 18px;
+    border-radius: 15px;
+    padding: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    background-color: #fcbb14;
+}
+
+
+.avatar {
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    background-color: grey;
+}
+
+.avatar img {
+    border-radius: 50%;
+}
+
+.create-event a {
+    color: white;
+    background-color: black;
+    border-radius: 20px;
+    padding: 5px 10px 5px 10px;
+}
