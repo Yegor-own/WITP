@@ -32,16 +32,27 @@ if (isset($_POST['exit'])) {
 
 if (isset($_POST['subject'])
     and isset($_POST['title']) 
-    and isset($_POST['descrioption'])) {
+    and isset($_POST['descrioption'])
+    and isset($_FILES['image'])) {
     if ($_POST['crowdfunding']) $_POST['crowdfunding'] = 1;
     else $_POST['crowdfunding'] = 0;
-    if (mysqli_query($connection, "INSERT INTO `events` (`login`, `title`, `description`, `crowdfunding`, `subject`) VALUES (
+    if (mysqli_query($connection, "INSERT INTO `events` (`login`, `title`, `description`, `crowdfunding`, `img`, `subject`) VALUES (
         '".$_SESSION['login']."', 
         '".$_POST['title']."', 
         '".$_POST['descrioption']."', 
-        '".$_POST['crowdfunding']."', 
+        '".$_POST['crowdfunding']."',
+        '".$_FILES['image']['name']."',
         '".$_POST['subject']."')")) {
-        header("Location: /index.php");
-        exit();
+            foreach ($_FILES["image"]["error"] as $key => $error) {
+                if ($error == UPLOAD_ERR_OK) {
+                    $tmp_name = $_FILES["image"]["tmp_name"][$key];
+                    $name = basename($_FILES["image"]["name"][$key]);
+                    move_uploaded_file($tmp_name, "..img/$name");
+                }
+            }
+            // $target = basename($_FILES['image']['name']);
+            // move_uploaded_file($_FILES['file']['tmp_name'], "../img/$target");
+            header("Location: /index.php");
+            exit();
     }
 }

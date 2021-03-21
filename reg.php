@@ -4,16 +4,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Зарегистрироваться</title>
+    <title>Регистрация</title>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/auth.css">
 </head>
 <body>
-    <div class="container">
+    <?php require "nav.php"; ?>
+    <main class="container rblock">
         <form action="config/div.php" method="post">
-            <input type="text" name="login" placeholder="Логин">
-            <input type="password" name="password" placeholder="Пароль">
-            <button type="submit">Зарегистрироваться</button>
+            <div class="title">
+                <h1>Регистрация</h1>
+            </div>
+            <input type="text" name="login" placeholder="Логин"><br>
+            <input type="password" name="password" placeholder="Пароль"><br>
+            <button type="submit">Далее</button>
         </form>
-    </div>
+    </main>
 </body>
 </html>

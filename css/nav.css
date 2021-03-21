@@ -1,0 +1,126 @@
+.head {
+    background: linear-gradient(0.25turn, #ff6f68, #feca51);
+    background-color: #ff6d69;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title {
+    margin-right: 2%;
+}
+
+.title a {
+    font-size: 50px;
+}
+
+.location {
+    margin-right: 2%;
+}
+
+.location form{
+    display: flex;
+    align-items: center;
+}
+
+#city {
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    border-bottom: 2px solid black;
+}
+
+.search {
+    margin-right: 2%;
+}
+
+.search form {
+    padding: 10px;
+    border-radius: 40px;
+    background-color: #efefef;
+    display: flex;
+    align-items: center;
+}
+
+.search form input {
+    height: 30px;
+    border: none;
+    background: none;
+    font-size: 20px;
+    color: grey;
+}
+
+.search form button {
+    border: none;
+    background: none;
+}
+
+
+.auth {
+    font-size: 30px;
+    margin-right: 50px;
+}
+
+.auth:hover {
+    border-bottom: 4px solid black;
+}
+
+.user {
+    display: inline;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.login {
+    font-size: 30px;
+    padding-bottom: 3px;
+    border-bottom: 2px solid black;
+}
+
+.avatar {
+    margin-left: 20px;
+    border-radius: 50%;
+    height: 70px;
+    width: 70px;
+    background-color: grey;
+}
+
+.avatar img {
+    border-radius: 50%;
+}
+
+.submenu {
+    width: 100px;
+    border-radius: 5px;
+    border: 1px solid black;
+    background-color: #feca51;
+    margin-top: 80px;
+    padding-left: 0;
+    display: none;
+    list-style: none;
+    text-align: center;
+}
+
+.submenu li {
+    padding-bottom: 5px;
+    border-bottom: 1px solid black;
+}
+
+.submenu li form input {
+    width: 100%;
+    height: 100%;
+    font-size: 17px;
+    background-color: #feca51;
+    border: none;
+}
+
+.submenu li form input:hover {
+    font-size: 17px;
+    background-color: #fdbf2f;
+    border: none;
+}
+
+.userbutton:hover {
+    background-color: #fdbf2f;
+}

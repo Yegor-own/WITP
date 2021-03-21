@@ -5,17 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Войти</title>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/auth.css">
 </head>
 <body>
-    <div class="container">
-        <?php
-        if (isset($_SESSION['error'])) {echo $_SESSION['error'];}
-        ?>
+    <?php require "nav.php"; ?>
+    <main class="container rblock">
         <form action="config/div.php" method="get">
-            <input type="text" name="login" placeholder="Логин">
-            <input type="password" name="password" placeholder="Пароль">
+            <div class="title">
+                <h1>Вход</h1>
+            </div>
+            <input type="text" name="login" placeholder="Логин"><br>
+            <input type="password" name="password" placeholder="Пароль"><br>
             <button type="submit">Войти</button>
         </form>
-    </div>
+    </main>
 </body>
 </html>

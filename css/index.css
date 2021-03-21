@@ -1,84 +1,54 @@
-.head {
-    padding-top: 5%;
+.subjects { 
+    background-color: #EFEFEF;
+}
+
+.subjects ul {
+    background-color: #EFEFEF;
+    list-style: none;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
+    padding: 30px 0 30px 0;
+}
+
+.subjects li {
+    padding-right: 30px;
+    padding-left: 30px;
+    font-size: 30px;
+}
+
+.subjects li:not(:last-child) {
+    border-right: 2px solid black;
+}
+
+.subjects li a:hover {
+    border-bottom: 3px solid black;
+}
+
+.start {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
     align-items: center;
 }
 
-.title {
-    margin-right: 2%;
-}
-
-.title h1 {
-    font-size: 50px;
-}
-
-.location {
-    margin-right: 2%;
-}
-
-.location form{
+.content {
     display: flex;
+    justify-content: center;
+    flex-direction: column;
     align-items: center;
 }
 
-#city {
-    border: none;
-    font-size: 20px;
+.content h2{
+    font-size: 40px;
+    font-weight: bolder;
 }
 
-.search {
-    margin-right: 2%;
-}
-
-.search form {
-    padding: 10px;
-    border-radius: 40px;
-    background-color: #efefef;
-    display: flex;
-    align-items: center;
-}
-
-.search form input {
-    height: 40px;
-    border: none;
-    background: none;
-    font-size: 20px;
-    color: grey;
-}
-
-.search form button {
-    border: none;
-    background: none;
-}
-
-
-.auth {
-    text-align: center;
-    display: block;
-    font-size: 18px;
-    border-radius: 15px;
-    padding: 10px;
-    margin-right: 10px;
-    margin-bottom: 10px;
-    background-color: #fcbb14;
-}
-
-
-.avatar {
-    border-radius: 50%;
-    height: 50px;
-    width: 50px;
-    background-color: grey;
-}
-
-.avatar img {
-    border-radius: 50%;
-}
-
-.create-event a {
-    color: white;
-    background-color: black;
+.content a {
     border-radius: 20px;
-    padding: 5px 10px 5px 10px;
+    text-align: center;
+    font-weight: bolder;
+    font-size: 30px;
+    width: 50%;
+    padding: 25px;
+    background: linear-gradient(0.25turn, #FF7567, #FEC053);;
 }

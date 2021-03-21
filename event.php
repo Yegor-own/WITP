@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="container">
-        <form action="config/div.php" method="post">
+        <form action="config/div.php" method="post" enctype='multipart/form-data'>
             <select name="subject" id="">
                 <option value="conert">Концерт</option>
                 <option value="art-galery">Арт галерея</option>
@@ -19,6 +19,7 @@
             <textarea name="descrioption" id="" cols="30" rows="10" placehold="Описание"></textarea>
             <label for="crowdfunding">Краудфандинг</label>
             <input type="checkbox" name="crowdfunding" id="">
+            <input type="file" name="image" id="">
             <input type="submit" value="Создать">
         </form>
     </div>

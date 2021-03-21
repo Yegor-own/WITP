@@ -1,0 +1,33 @@
+.rblock {
+    padding-top: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rblock form {
+    display: flex;
+    flex-direction: column;
+    padding: 5%;
+    background-color: #eaeaea;
+    border-radius: 30px;
+}
+
+.rblock form input {
+    font-size: 20px;
+    border: none;
+    background-color: white;
+    height: 30px;
+    border-radius: 40px;
+    text-align: center;
+}
+
+.rblock form button {
+    font-size: 30px;
+    font-weight: bolder;
+    border: none;
+    background: linear-gradient(0.25turn, #FF7567, #FEC053);
+    height: 50px;
+    border-radius: 15px;
+    text-align: center;
+}
