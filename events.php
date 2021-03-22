@@ -1,7 +1,12 @@
 <?php
 session_start();
 require_once 'config/db.php';
-$events = mysqli_query($connection, "SELECT * FROM `events` WHERE `guests` LIKE '%".$_SESSION['login']."%'");   
+if (isset($_SESSION['eve'])) {
+    $events = mysqli_query($connection, "SELECT * FROM `events` WHERE `guests` LIKE '%".$_SESSION['login']."%'");
+} elseif (isset($_SESSION['evey'])) {
+    $eventsyour = mysqli_query($connection, "SELECT * FROM `events` WHERE `author`='".$_SESSION['login']."'");
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,11 +26,14 @@ $events = mysqli_query($connection, "SELECT * FROM `events` WHERE `guests` LIKE 
     ?>
     <nav class="container subjects">
         <ul>
-            <li><form action="config/div.php" method="get" class="active"><input name="events" type="submit" value="События"></form></li>
-            <li><form action="config/div.php" method="get"><input type="submit" name="yourevents" value="Ваши события"></form></li>
+            <li><form action="config/div.php" method="get" <?php if(isset($_SESSION['eve'])) echo 'class="active"'; ?>><input name="events" type="submit" value="События"></form></li>
+            <li><form action="config/div.php" method="get" <?php if(isset($_SESSION['evey'])) echo 'class="active"'; ?>><input type="submit" name="yourevents" value="Ваши события"></form></li>
         </ul>
     </nav>
     <main class="container">
+        <?php
+        if (isset($_SESSION['eve'])) {
+        ?>
         <div class="events">
             <?php
             while ($event = mysqli_fetch_assoc($events)) {
@@ -43,6 +51,28 @@ $events = mysqli_query($connection, "SELECT * FROM `events` WHERE `guests` LIKE 
             }
             ?>
         </div>
+        <?php
+        } elseif (isset($_SESSION['evey'])) {
+        ?>
+        <div class="events">
+            <?php
+            while ($event = mysqli_fetch_assoc($eventsyour)) {
+                $colors = ['#FF7567', '#FEC053', 'cyan', 'blue', 'darkorchid'];
+                $names = ['Музыка', 'Искусство', 'Наука', 'Спорт', 'Отдых'];
+            ?>
+            <div class="event">
+                <div class="image"><img src="/event-background/<?php echo $event['img']; ?>" alt="Лого"></div>
+                <div class="subject" style="background-color: <?php echo $colors[$event['subject']]; ?>"><span><?php echo $names[$event['subject']]; ?></span></div>
+                <div class="title"><h2><?php echo $event['title']; ?></h2></div>
+                <div class="desc"><h4><?php echo $event['description']; ?></h4></div>
+            </div>
+            <?php
+            }
+            ?>
+        </div>
+        <?php
+        }
+        ?>
     </main><br><br>
     <script src="js/nav.js"></script>
     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

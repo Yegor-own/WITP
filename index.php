@@ -71,8 +71,6 @@ $rows = ceil($rows / 2);
         ?>
     </main><br><br>
     <script src="js/nav.js"></script>
-    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="js/slick.min.js"></script> -->
     <script src="js/index.js"></script>
 </body>
 </html>

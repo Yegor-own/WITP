@@ -100,3 +100,20 @@ if (isset($_POST['sign'])) {
         exit();
     }
 }
+
+if (isset($_GET['events'])) {
+    $_SESSION['eve'] = true;
+    unset($_GET['events']);
+    unset($_SESSION['evey']);
+    header("Location: /events.php");
+    exit();
+}
+
+if (isset($_GET['yourevents'])) {
+    $_SESSION['evey'] = true;
+    unset($_GET['yourevents']);
+    unset($_SESSION['eve']);
+    header("Location: /events.php");
+    exit();
+}
+
