@@ -40,7 +40,9 @@ session_start();
                 <option value="msc">Москва</option>
                 <option value="spb">Санкт-Петербург</option>
                 <option value="nsk">Новосибирск</option>
-            </select>
+            </select><br>
+            <input type="time" name="time"><br>
+            <input type="date" name="date">
             <div class="chekbox">
                 <label for="crowdfunding">Краудфандинг:</label>
                 <input type="checkbox" name="crowdfunding" id="">

@@ -1,4 +1,4 @@
+let submenu = document.querySelector('.submenu')
 function logoclick() {
-    let submenu = document.querySelector('.submenu')
-    submenu.style.display = 'block'
+    (submenu.style.display == 'none') ? submenu.style.display="none" : submenu.style.display="block";
 }

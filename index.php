@@ -1,9 +1,8 @@
 <?php
 session_start();
 require_once 'config/db.php';
-$events = mysqli_query($connection, "SELECT * FROM `events`");
-$rows = mysqli_num_rows($events);
-$rows = ceil($rows / 2);
+if (isset($_SESSION['rec'])) $events = mysqli_query($connection, "SELECT * FROM `events`");
+elseif (isset($_SESSION['sub']))  $subs = mysqli_query($connection, "SELECT * FROM `subscribes` WHERE `login`='".$_SESSION['login']."'");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,8 +23,8 @@ $rows = ceil($rows / 2);
     ?>
     <nav class="container subjects">
         <ul>
-            <li><form action="config/div.php" method="get" class="active"><input name="recomendations" type="submit" value="Рекомендации"></form></li>
-            <li><form action="config/div.php" method="get"><input type="submit" name="subs" value="Подписки"></form></li>
+            <li><form action="config/div.php" method="get" <?php if (isset($_SESSION['rec'])) echo 'class="active"'; ?>><input name="recomendations" type="submit" value="Рекомендации"></form></li>
+            <li><form action="config/div.php" method="get" <?php if (isset($_SESSION['sub'])) echo 'class="active"'; ?>><input type="submit" name="subs" value="Подписки"></form></li>
         </ul>
     </nav>
     <?php
@@ -58,7 +57,7 @@ $rows = ceil($rows / 2);
                     <div class="subject" style="background-color: <?php echo $colors[$event['subject']]; ?>"><span><?php echo $names[$event['subject']]; ?></span></div>
                     <div class="title"><h2><?php echo $event['title']; ?></h2></div>
                     <div class="desc"><h4><?php echo $event['description']; ?></h4></div>
-                    <div class="author"><h4>Автор: <?php echo $event['author']; ?></h4><form action="config/div.php" method="post"><input type="hidden" name="author" value="<?php echo $event['login']; ?>"><button class="subscr" type="submit">Подписаться</button></form></div>
+                    <div class="author"><h4>Автор: <?php echo $event['author']; ?></h4><form action="config/div.php" method="post"><input type="hidden" name="author" value="<?php echo $event['author']; ?>"><button class="subscr" type="submit">Подписаться</button></form></div>
                     <form action="config/div.php" method="post"><input type="hidden" name="event" value="<?php echo $event['id']; ?>"><input name="sign" class="submit" type="submit" value="Записаться"></form><br>
                 </div>
                 <?php
@@ -66,6 +65,21 @@ $rows = ceil($rows / 2);
                 ?>
         </div>
         <?php
+            } elseif (isset($_SESSION['sub'])) {
+            ?>
+            <div class="subscribes">
+                <?php
+                while ($subscription = mysqli_fetch_assoc($subs)) {
+                ?>
+                <div class="subscribe">
+                    <div class="name"><h3><?php echo $subscription['subs']; ?></h3></div>
+                    <!-- <div class="avatr"><img src="" alt=""></div> -->
+                </div>
+                <?php
+                }
+                ?>
+            </div>
+            <?php
             }
         }
         ?>

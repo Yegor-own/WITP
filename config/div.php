@@ -55,17 +55,21 @@ if (isset($_POST['exit'])) {
 if (isset($_POST['subject'])
     and isset($_POST['title']) 
     and isset($_POST['descrioption'])
+    and isset($_POST['time'])
+    and isset($_POST['date'])
     and isset($_FILES['image'])) {
     if ($_POST['crowdfunding']) $_POST['crowdfunding'] = 1;
     else $_POST['crowdfunding'] = 0;
-    if (mysqli_query($connection, "INSERT INTO `events` (`author`, `title`, `description`, `crowdfunding`, `img`, `subject`, `city`) VALUES (
+    if (mysqli_query($connection, "INSERT INTO `events` (`author`, `title`, `description`, `crowdfunding`, `img`, `subject`, `city`, `time`, `date`) VALUES (
         '".$_SESSION['login']."', 
         '".$_POST['title']."', 
         '".$_POST['descrioption']."', 
         '".$_POST['crowdfunding']."',
         '".$_FILES['image']['name']."',
         '".$_POST['subject']."',
-        '".$_POST['city']."')")) {
+        '".$_POST['city']."',
+        '".$_POST['time']."',
+        '".$_POST['date']."')")) {
             $target = $_FILES['image']['name'];
             move_uploaded_file($_FILES['image']['tmp_name'], '../event-background/'.$target);
             header("Location: /index.php");
@@ -117,3 +121,12 @@ if (isset($_GET['yourevents'])) {
     exit();
 }
 
+if (isset($_POST['author'])) {
+    if (mysqli_query($connection, "INSERT INTO `subscribes` (`login`, `subs`) VALUES ('".$_SESSION['login']."', '".$_POST['author']."')")) {
+        $_SESSION['sub'] = true;
+        unset($_GET['subs']);
+        unset($_SESSION['rec']);
+        header("Location: /index.php");
+        exit();
+    }
+}
