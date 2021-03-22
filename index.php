@@ -84,6 +84,7 @@ elseif (isset($_SESSION['sub']))  $subs = mysqli_query($connection, "SELECT * FR
         }
         ?>
     </main><br><br>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="js/nav.js"></script>
     <script src="js/index.js"></script>
 </body>

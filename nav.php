@@ -19,7 +19,7 @@
             <input type="search" name="search" placeholder="Поиск">
         </form>
     </div>
-    <div class="user" onclick="logoclick()">
+    <div class="user">
         <?php
         if (isset($_SESSION['login'])) {
             echo '<div class="login">'.$_SESSION['login'].'  <img src="/img/drop.png" alt="" height="10px" width="10px"></div>';

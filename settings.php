@@ -32,6 +32,7 @@ session_start();
             <button type="submit">Далее</button>
         </form>
     </main>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="js/nav.js"></script>
 </body>
 </html>

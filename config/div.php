@@ -130,3 +130,27 @@ if (isset($_POST['author'])) {
         exit();
     }
 }
+
+if (!empty($_POST['loginupdate']) or !empty($_POST['nameupdate']) or !empty($_POST['surnameupdate']) or !empty($_FILES['userimgupdate'])) {
+    if (!empty($_POST['loginupdate'])) {
+        if (mysqli_query($connection, "UPDATE `users` SET `login`='".$_POST['loginupdate']."' WHERE `login`='".$_SESSION['login']."'")) {
+            $_SESSION['login'] = $_POST['loginupdate'];
+        }
+    }
+    if (!empty($_POST['nameupdate'])) {
+        if (mysqli_query($connection, "UPDATE `users` SET `name`='".$_POST['nameupdate']."' WHERE `login`='".$_SESSION['login']."'")) {}
+    }
+    
+    if (!empty($_POST['surnameupdate'])) {
+        if (mysqli_query($connection, "UPDATE `users` SET `surname`='".$_POST['surnameupdate']."' WHERE `login`='".$_SESSION['login']."'")) {}
+    }
+    if (!empty($_FILES['userimgupdate'])) {
+        if (mysqli_query($connection, "UPDATE `users` SET `img`='".$_FILES['userimgupdate']['name']."' WHERE `login`='".$_SESSION['login']."'")) {
+            $target = $_FILES['userimgupdate']['name'];
+            move_uploaded_file($_FILES['userimgupdate']['tmp_name'], '../user-image/'.$target);
+            $_SESSION['image'] = $target;
+        }
+    }
+    header("Location: /index.php");
+    exit();
+}
