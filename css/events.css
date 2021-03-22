@@ -60,7 +60,7 @@
     background: linear-gradient(0.25turn, #FF7567, #FEC053);
 }
 
-.recomendations {
+.events {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;

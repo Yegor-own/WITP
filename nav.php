@@ -22,13 +22,16 @@
     <div class="user" onclick="logoclick()">
         <?php
         if (isset($_SESSION['login'])) {
-            echo '<div class="login">'.$_SESSION['login'].'</div>';
-            echo ' <div class="avatar">
+            echo '<div class="login">'.$_SESSION['login'].'  <img src="/img/drop.png" alt="" height="10px" width="10px"></div>';
+            echo '<div class="avatar">
+                    <img src="/user-image/'.$_SESSION['image'].'" alt="" height="70px" width="70px">
                     <ul class="submenu">
-                        <li class="userbutton"><a href="event.php">Создать событие</a></li>
-                        <li><form action="config/div.php" class="userbutton" method="post"><input class="exit" name="exit" type="submit" value="Выйти"></form></li>
+                        <li class="userbutton"><a href="events.php">События</a></li>
+                        <li class="userbutton"><a href="new_event.php">Новое событие</a></li>
+                        <li class="userbutton"><a href="settings.php">Настройки</a></li>
+                        <li><form action="config/div.php" method="post"><input class="exit" name="exit" type="submit" value="Выйти"></form></li>
                     </ul>
-                </div>';                
+                </div>'; 
         } else {
             echo '<a class="auth" href="reg.php">Регистрация</a>';
             echo '<a class="auth" href="auth.php">Вход</a>';

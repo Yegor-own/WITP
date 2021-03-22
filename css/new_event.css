@@ -1,11 +1,11 @@
-.rblock {
+.eblock {
     padding-top: 5%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.rblock form {
+.eblock form {
     display: flex;
     flex-direction: column;
     padding: 5%;
@@ -13,17 +13,35 @@
     border-radius: 30px;
 }
 
-.rblock form input {
+.eblock form select {
+    text-align-last: center;
+    color: #757575;
+    font-size: 20px;
+    border: none;
+    background-color: white;
+    height: 30px;
+    border-radius: 40px;
+}
+
+.eblock form textarea {
     font-size: 20px;
     border: none;
     background-color: white;
     height: 30px;
     border-radius: 40px;
     text-align: center;
-    color: #75758B;
 }
 
-.rblock form button {
+.eblock form input {
+    font-size: 20px;
+    border: none;
+    background-color: white;
+    height: 30px;
+    border-radius: 40px;
+    text-align: center;
+}
+
+.eblock form button {
     font-size: 30px;
     font-weight: bolder;
     border: none;
@@ -32,6 +50,19 @@
     border-radius: 15px;
     text-align: center;
 }
+
+.chekbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chekbox label {
+    color: #757575;
+    font-size: 20px;
+    margin-right: 10px;
+}
+
 
 .input__wrapper {
     width: 100%;

@@ -83,7 +83,6 @@
     border-radius: 50%;
     height: 70px;
     width: 70px;
-    background-color: grey;
 }
 
 .avatar img {
@@ -93,9 +92,8 @@
 .submenu {
     width: 100px;
     border-radius: 5px;
-    border: 1px solid black;
-    background-color: #feca51;
-    margin-top: 80px;
+    background: linear-gradient(0.25turn, #ff6f68, #feca51);
+    margin-top: 6px;
     padding-left: 0;
     display: none;
     list-style: none;
@@ -103,24 +101,28 @@
 }
 
 .submenu li {
+    padding-top: 5px;
     padding-bottom: 5px;
-    border-bottom: 1px solid black;
 }
 
-.submenu li form input {
+.exit {
     width: 100%;
     height: 100%;
     font-size: 17px;
-    background-color: #feca51;
+    background: linear-gradient(0.25turn, #ff6f68, #feca51);
     border: none;
 }
 
-.submenu li form input:hover {
-    font-size: 17px;
-    background-color: #fdbf2f;
-    border: none;
+.exit:hover {
+    background: linear-gradient(0.25turn, #ff6f68, #ff0000);
+}
+
+.userbutton {
+    border-bottom: 1px solid black;
 }
 
 .userbutton:hover {
-    background-color: #fdbf2f;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    background: linear-gradient(0.25turn, #ff6f68, #fbff00);
 }
