@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Регистрация</title>
-    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <link rel="stylesheet" href="css/font.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/nav.css">
     <link rel="stylesheet" href="css/auth.css">
@@ -22,6 +22,14 @@
             <input type="text" name="name" placeholder="Имя"><br>
             <input type="text" name="surname" placeholder="Фамилия"><br>
             <input type="date" name="brith" placeholder="Дата рождения"><br>
+            <div class="subj">Интересы</div><br>
+            <ul class="subject">
+                <li><input type="checkbox" name="subject0" value="0">Музыка</li>
+                <li><input type="checkbox" name="subject1" value="1">Искусство</li>
+                <li><input type="checkbox" name="subject2" value="2">Наука</li>
+                <li><input type="checkbox" name="subject3" value="3">Спорт</li>
+                <li><input type="checkbox" name="subject4" value="4">Отдых</li>
+            </ul>
             <div class="input__wrapper">
                 <input name="userimg" type="file" name="file" id="input__file" class="input input__file" multiple>
                 <label for="input__file" class="input__file-button">
@@ -30,6 +38,8 @@
             </div><br>
             <button type="submit">Далее</button>
         </form>
-    </main>
+    </main><br><br>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/reg.js"></script>
 </body>
 </html>

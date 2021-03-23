@@ -131,3 +131,24 @@
     border-top-left-radius: 5px;
     background: linear-gradient(0.25turn, #ff6f68, #fbff00);
 }
+
+@media(max-width: 1261px) {
+    .submenu {
+        display: block;
+    }
+    .search {
+        display: none;
+    }
+    .head {
+        justify-content: center;
+    }
+    .submenu {
+        display: block;
+    }
+    .location {
+        display: none;
+    }
+    .title {
+        display: none;
+    }
+}

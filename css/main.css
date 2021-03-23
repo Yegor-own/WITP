@@ -19,7 +19,7 @@ a {
     padding: 0 4% 0 4%;
 }
 
-@media(max-width: 1260px) {
+@media(max-width: 1261px) {
     .container {
         margin: 0;
         padding: 0;

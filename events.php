@@ -15,7 +15,7 @@ if (isset($_SESSION['eve'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Главная</title>
-    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <link rel="stylesheet" href="css/font.css">
     <link rel="stylesheet" href="css/events.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/nav.css">
@@ -45,6 +45,7 @@ if (isset($_SESSION['eve'])) {
                 <div class="subject" style="background-color: <?php echo $colors[$event['subject']]; ?>"><span><?php echo $names[$event['subject']]; ?></span></div>
                 <div class="title"><h2><?php echo $event['title']; ?></h2></div>
                 <div class="desc"><h4><?php echo $event['description']; ?></h4></div>
+                <?php if ($event['crowdfunding']) echo '<a class="donat" href="donat.php">Перевести сумму</a>';?>
                 <div class="author"><h4>Автор: <?php echo $event['author']; ?></h4><form action="config/div.php" method="post"><input type="hidden" name="author" value="<?php echo $event['login']; ?>"><button class="subscr" type="submit">Подписаться</button></form></div>
             </div>
             <?php

@@ -117,7 +117,15 @@
     font-weight: bolder;
     border: none;
     background: linear-gradient(0.25turn, #FEC053, #FF7567);
-    height: 25  px;
+    height: 25px;
     border-radius: 15px;
     text-align: center;
+}
+
+.donat {
+    background: linear-gradient(0.25turn, #FEC053, #FF7567);
+    border-radius: 15px;
+    font-size: 15px;
+    font-weight: bolder;
+    padding: 5px;
 }

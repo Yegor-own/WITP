@@ -8,13 +8,21 @@ if (isset($_POST['login'])
     and isset($_POST['surname'])
     and isset($_POST['brith'])) {
     if (isset($_FILES['userimg']['name'])) {
-        if (mysqli_query($connection, "INSERT INTO `users` (`login`, `password`, `name`, `surname`, `brith`, `img`) VALUES ('".$_POST['login']."', 
+        $subject = ''; 
+        for ($i=0; $i < 5; $i++) { 
+            $subject = $subject.$_POST['subject'.$i].' ';
+        }
+        if (mysqli_query($connection, "INSERT INTO `users` (`login`, `password`, `name`, `surname`, `brith`, `img`, `subjects`) VALUES ('".$_POST['login']."', 
                                                                                                                             '".md5($_POST['password'])."', 
                                                                                                                             '".$_POST['name']."', 
                                                                                                                             '".$_POST['surname']."', 
                                                                                                                             '".$_POST['brith']."', 
-                                                                                                                            '".$_FILES['userimg']['name']."')")) {
+                                                                                                                            '".$_FILES['userimg']['name']."',
+                                                                                                                            '".$subject."')")) {
             $_SESSION['login'] = $_POST['login'];
+            $_SESSION['rec'] = true;
+            $_SESSION['eve'] = true;
+            $_SESSION['subjects'] = explode(' ', $subject);
             $_SESSION['image'] = $_FILES['userimg']['name'];
             move_uploaded_file($_FILES['userimg']['tmp_name'], '../user-image/'.$_FILES['userimg']['name']);
             header("Location: /index.php");
@@ -35,7 +43,10 @@ if (isset($_GET['login']) and isset($_GET['password'])) {
     $f = mysqli_fetch_assoc($query);
     $num_rows = mysqli_num_rows($query);
     if ($num_rows) {
+        $_SESSION['rec'] = true;
+        $_SESSION['eve'] = true;
         $_SESSION['login'] = $_GET['login'];
+        $_SESSION['subjects'] = explode(' ', $f['subjects']);
         $_SESSION['image'] = $f['img'];
         header("Location: /index.php");
         exit();

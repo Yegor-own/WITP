@@ -1,7 +1,10 @@
 <?php
 session_start();
 require_once 'config/db.php';
-if (isset($_SESSION['rec'])) $events = mysqli_query($connection, "SELECT * FROM `events`");
+if (isset($_SESSION['rec'])) {
+    $is = join("','", $_SESSION['subjects']);
+    $events = mysqli_query($connection, "SELECT * FROM `events` WHERE `subject` IN ('".$is."')");
+}
 elseif (isset($_SESSION['sub'])) $subs = mysqli_query($connection, "SELECT * FROM `users` WHERE `login`='".$_SESSION['login']."'");
 if (isset($_SESSION['city'])) $city = mysqli_query($connection, "SELECT * FROM `events` WHERE `city`='".$_SESSION['city']."'");
 if (isset($_SESSION['search'])) $search = mysqli_query($connection, "SELECT * FROM `events` WHERE `title` LIKE '%".$_SESSION['search']."%'");
@@ -13,7 +16,7 @@ if (isset($_SESSION['search'])) $search = mysqli_query($connection, "SELECT * FR
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Главная</title>
-    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <link rel="stylesheet" href="css/font.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/nav.css">
@@ -62,6 +65,7 @@ if (isset($_SESSION['search'])) $search = mysqli_query($connection, "SELECT * FR
                     <div class="desc"><h4><?php echo $event['description']; ?></h4></div>
                     <div class="desc"><h4>Время:    <?php echo $event['time']; ?><span>       </span><?php echo $event['date']; ?></h4></div>
                     <div class="location"><h4>Город:    <?php echo $cities[$event['city']]; ?></h4></div>
+                    <?php if ($event['crowdfunding']) echo '<div class="croudfinding"><h4>Нужен донат</h4></div>';?>
                     <div class="author"><h4>Автор: <?php echo $event['author']; ?></h4><form action="config/div.php" method="post"><input type="hidden" name="author" value="<?php echo $event['author']; ?>"><button class="subscr" type="submit">Подписаться</button></form></div>
                     <form action="config/div.php" method="post"><input type="hidden" name="event" value="<?php echo $event['id']; ?>"><input name="sign" class="submit" type="submit" value="Записаться"></form><br>
                 </div>
@@ -107,6 +111,7 @@ if (isset($_SESSION['search'])) $search = mysqli_query($connection, "SELECT * FR
                 <div class="desc"><h4><?php echo $localevents['description']; ?></h4></div>
                 <div class="time"><h4>Время:    <?php echo $localevents['time']; ?><span>       </span><?php echo $localevents['date']; ?></h4></div>
                 <div class="location"><h4><?php echo $cities[$localevents['city']]; ?></h4></div>
+                <?php if ($localevents['crowdfunding']) echo '<div class="croudfinding"><h4>Нуужен донат</h4></div>';?>
                 <div class="author"><h4>Автор: <?php echo $localevents['author']; ?></h4><form action="config/div.php" method="post"><input type="hidden" name="author" value="<?php echo $localevents['author']; ?>"><button class="subscr" type="submit">Подписаться</button></form></div>
                 <form action="config/div.php" method="post"><input type="hidden" name="events" value="<?php echo $localevents['id']; ?>"><input name="sign" class="submit" type="submit" value="Записаться"></form><br>
             </div>

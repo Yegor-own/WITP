@@ -143,3 +143,9 @@
     flex-wrap: wrap;
     justify-content: space-between;
 }
+
+@media(max-width: 1261px) {
+    .subjects {
+        margin-top: 500px;
+    }
+}
