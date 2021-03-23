@@ -121,3 +121,25 @@
     border-radius: 15px;
     text-align: center;
 }
+
+.subscribes {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.subscribe {
+    width: 20%;
+    margin-top: 2%;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.search {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}

@@ -23,6 +23,11 @@
     align-items: center;
 }
 
+.subsity {
+    background-color: transparent;
+    border: none;
+}
+
 #city {
     background-color: transparent;
     border: none;

@@ -3,18 +3,18 @@
         <h1><a href="/index.php">WHERE IS THE PARTY</a></h1>
     </div>
     <div class="location">
-        <form action="" method="get">
-            <img src="maket/placeholder_1.svg" alt="" height="40px">
+        <form action="config/div.php" method="get">
+            <button type="submit" class="subsity"><img src="maket/placeholder_1.svg" alt="" height="40px"></button>
             <select name="city" id="city">
-                <option value="ekb">Екатеринбург</option>
-                <option value="msc">Москва</option>
-                <option value="spb">Санкт-Петербург</option>
-                <option value="nsk">Новосибирск</option>
+                <option value="0">Екатеринбург</option>
+                <option value="1">Москва</option>
+                <option value="2">Санкт-Петербург</option>
+                <option value="3">Новосибирск</option>
             </select>
         </form>
     </div>
     <div class="search">
-        <form action="" method="get">
+        <form action="config/div.php" method="get">
             <button type="submit"><img src="maket/search_1.svg" alt=""></button>
             <input type="search" name="search" placeholder="Поиск">
         </form>

@@ -83,6 +83,8 @@ if (isset($_GET['recomendations'])) {
     $_SESSION['rec'] = true;
     unset($_GET['recomendations']);
     unset($_SESSION['sub']);
+    unset($_SESSION['city']);
+    unset($_SESSION['search']);
     header("Location: /index.php");
     exit();
 }
@@ -91,6 +93,8 @@ if (isset($_GET['subs'])) {
     $_SESSION['sub'] = true;
     unset($_GET['subs']);
     unset($_SESSION['rec']);
+    unset($_SESSION['city']);
+    unset($_SESSION['search']);
     header("Location: /index.php");
     exit();
 }
@@ -122,35 +126,66 @@ if (isset($_GET['yourevents'])) {
 }
 
 if (isset($_POST['author'])) {
-    if (mysqli_query($connection, "INSERT INTO `subscribes` (`login`, `subs`) VALUES ('".$_SESSION['login']."', '".$_POST['author']."')")) {
-        $_SESSION['sub'] = true;
-        unset($_GET['subs']);
-        unset($_SESSION['rec']);
+    $query = mysqli_query($connection, "SELECT * FROM `users` WHERE `login`='".$_SESSION['login']."'");
+    $query = mysqli_fetch_assoc($query);
+    if (strpos($query['subs'], $_POST['author']) === false) {
+        if ($query['subs'] != $_SESSION['login']) {
+            $sub = $query['subs'].','.$_POST['author'];
+            if (mysqli_query($connection, "UPDATE `users` SET `subs`='".$sub."' WHERE `login`='".$_SESSION['login']."'")) {
+                $_SESSION['sub'] = true;
+                unset($_GET['subs']);
+                unset($_SESSION['rec']);
+                header("Location: /index.php");
+                exit();
+            }
+        } else {
+            header("Location: /index.php");
+            exit();
+        }
+    } else {
         header("Location: /index.php");
         exit();
     }
 }
 
-if (!empty($_POST['loginupdate']) or !empty($_POST['nameupdate']) or !empty($_POST['surnameupdate']) or !empty($_FILES['userimgupdate'])) {
+if (isset($_POST['loginupdate']) or isset($_POST['nameupdate']) or isset($_POST['surnameupdate']) or isset($_FILES['userimgupdate'])) {
     if (!empty($_POST['loginupdate'])) {
         if (mysqli_query($connection, "UPDATE `users` SET `login`='".$_POST['loginupdate']."' WHERE `login`='".$_SESSION['login']."'")) {
+            mysqli_query($connection, "UPDATE `events` SET `author`='".$_POST['loginupdate']."' WHERE `author`='".$_SESSION['login']."'");
             $_SESSION['login'] = $_POST['loginupdate'];
         }
     }
     if (!empty($_POST['nameupdate'])) {
-        if (mysqli_query($connection, "UPDATE `users` SET `name`='".$_POST['nameupdate']."' WHERE `login`='".$_SESSION['login']."'")) {}
+        mysqli_query($connection, "UPDATE `users` SET `name`='".$_POST['nameupdate']."' WHERE `login`='".$_SESSION['login']."'");
     }
-    
     if (!empty($_POST['surnameupdate'])) {
-        if (mysqli_query($connection, "UPDATE `users` SET `surname`='".$_POST['surnameupdate']."' WHERE `login`='".$_SESSION['login']."'")) {}
+        mysqli_query($connection, "UPDATE `users` SET `surname`='".$_POST['surnameupdate']."' WHERE `login`='".$_SESSION['login']."'");
     }
-    if (!empty($_FILES['userimgupdate'])) {
+    if (!empty($_FILES['userimgupdate']['name'])) {
         if (mysqli_query($connection, "UPDATE `users` SET `img`='".$_FILES['userimgupdate']['name']."' WHERE `login`='".$_SESSION['login']."'")) {
             $target = $_FILES['userimgupdate']['name'];
             move_uploaded_file($_FILES['userimgupdate']['tmp_name'], '../user-image/'.$target);
             $_SESSION['image'] = $target;
-        }
+            unset($_FILES['userimgupdate']);
+        }   
     }
+    header("Location: /index.php");
+    exit();
+}
+
+if (isset($_GET['city'])) {
+    unset($_SESSION['rec']);
+    unset($_SESSION['sub']);
+    $_SESSION['city'] = $_GET['city'];
+    header("Location: /index.php");
+    exit();
+}
+
+if ($_GET['search']) {
+    unset($_SESSION['rec']);
+    unset($_SESSION['sub']);
+    unset($_SESSION['city']);
+    $_SESSION['search'] = $_GET['search'];
     header("Location: /index.php");
     exit();
 }

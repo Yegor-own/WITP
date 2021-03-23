@@ -36,10 +36,10 @@ session_start();
                 </label>
             </div><br>
             <select name="city" class="city">
-                <option value="ekb">Екатеринбург</option>
-                <option value="msc">Москва</option>
-                <option value="spb">Санкт-Петербург</option>
-                <option value="nsk">Новосибирск</option>
+                <option value="0">Екатеринбург</option>
+                <option value="1">Москва</option>
+                <option value="2">Санкт-Петербург</option>
+                <option value="3">Новосибирск</option>
             </select><br>
             <input type="time" name="time"><br>
             <input type="date" name="date">
