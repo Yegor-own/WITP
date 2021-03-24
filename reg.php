@@ -22,7 +22,7 @@
             <input type="text" name="name" placeholder="Имя"><br>
             <input type="text" name="surname" placeholder="Фамилия"><br>
             <input type="date" name="brith" placeholder="Дата рождения"><br>
-            <div class="subj">Интересы</div><br>
+            <div class="subj">Интересы <img src="img/drop.png" height="15px" alt=""></div><br>
             <ul class="subject">
                 <li><input type="checkbox" name="subject0" value="0">Музыка</li>
                 <li><input type="checkbox" name="subject1" value="1">Искусство</li>
@@ -36,6 +36,7 @@
                     <span>Выберите аватар</span>
                 </label>
             </div><br>
+            <input type="text" name="pay" placeholder="Номер карты для доната"><br>
             <button type="submit">Далее</button>
         </form>
     </main><br><br>

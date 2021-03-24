@@ -12,13 +12,16 @@ if (isset($_POST['login'])
         for ($i=0; $i < 5; $i++) { 
             $subject = $subject.$_POST['subject'.$i].' ';
         }
-        if (mysqli_query($connection, "INSERT INTO `users` (`login`, `password`, `name`, `surname`, `brith`, `img`, `subjects`) VALUES ('".$_POST['login']."', 
+        $payment = '';
+        $payment = $_POST['pay'];
+        if (mysqli_query($connection, "INSERT INTO `users` (`login`, `password`, `name`, `surname`, `brith`, `img`, `subjects`, `payment`) VALUES ('".$_POST['login']."', 
                                                                                                                             '".md5($_POST['password'])."', 
                                                                                                                             '".$_POST['name']."', 
                                                                                                                             '".$_POST['surname']."', 
                                                                                                                             '".$_POST['brith']."', 
                                                                                                                             '".$_FILES['userimg']['name']."',
-                                                                                                                            '".$subject."')")) {
+                                                                                                                            '".$subject."',
+                                                                                                                            '".$payment."')")) {
             $_SESSION['login'] = $_POST['login'];
             $_SESSION['rec'] = true;
             $_SESSION['eve'] = true;
@@ -113,7 +116,7 @@ if (isset($_GET['subs'])) {
 if (isset($_POST['sign'])) {
     $query = mysqli_query($connection, "SELECT * FROM `events` WHERE `id`='".$_POST['event']."'");
     $query = mysqli_fetch_assoc($query);
-    $guest = $query['guests'].$_SESSION['login'];
+    $guest = $query['guests'].','.$_SESSION['login'];
     if (mysqli_query($connection, "UPDATE `events` SET `guests`='".$guest."' WHERE `id` = '".$_POST['event']."'")) {
         header("Location: /index.php");
         exit();
@@ -141,7 +144,7 @@ if (isset($_POST['author'])) {
     $query = mysqli_fetch_assoc($query);
     if (strpos($query['subs'], $_POST['author']) === false) {
         if ($query['subs'] != $_SESSION['login']) {
-            $sub = $query['subs'].','.$_POST['author'];
+            $sub = $query['subs']."','".$_POST['author']."'";
             if (mysqli_query($connection, "UPDATE `users` SET `subs`='".$sub."' WHERE `login`='".$_SESSION['login']."'")) {
                 $_SESSION['sub'] = true;
                 unset($_GET['subs']);
@@ -159,7 +162,18 @@ if (isset($_POST['author'])) {
     }
 }
 
-if (isset($_POST['loginupdate']) or isset($_POST['nameupdate']) or isset($_POST['surnameupdate']) or isset($_FILES['userimgupdate'])) {
+if (isset($_POST['loginupdate']) or isset($_POST['nameupdate']) or isset($_POST['surnameupdate']) or isset($_FILES['userimgupdate']) or isset($_POST['pay']) or 
+    isset($_POST['subject0']) or
+    isset($_POST['subject1']) or
+    isset($_POST['subject2']) or
+    isset($_POST['subject3']) or
+    isset($_POST['subject4'])) {
+    $payment = '';
+    $payment = $_POST['pay'];
+    $subject = ''; 
+    for ($i=0; $i < 5; $i++) { 
+        $subject = $subject.$_POST['subject'.$i].' ';
+    }
     if (!empty($_POST['loginupdate'])) {
         if (mysqli_query($connection, "UPDATE `users` SET `login`='".$_POST['loginupdate']."' WHERE `login`='".$_SESSION['login']."'")) {
             mysqli_query($connection, "UPDATE `events` SET `author`='".$_POST['loginupdate']."' WHERE `author`='".$_SESSION['login']."'");
@@ -180,6 +194,13 @@ if (isset($_POST['loginupdate']) or isset($_POST['nameupdate']) or isset($_POST[
             unset($_FILES['userimgupdate']);
         }   
     }
+    if (!empty($payment)) {
+        mysqli_query($connection, "UPDATE `users` SET `payment`='".$payment."' WHERE `login`='".$_SESSION['login']."'");
+    }
+    if (!empty($subject)) {
+        mysqli_query($connection, "UPDATE `users` SET `subjects`='".$subject."' WHERE `login`='".$_SESSION['login']."'");
+        $_SESSION['subjects'] = explode(' ',$subject);
+    }
     header("Location: /index.php");
     exit();
 }
@@ -199,4 +220,10 @@ if ($_GET['search']) {
     $_SESSION['search'] = $_GET['search'];
     header("Location: /index.php");
     exit();
+}
+
+if ($_GET['event']) {
+    $_SESSION['eventname'] = $_GET['event'];
+    header("Location: /event.php");
+    exit;
 }

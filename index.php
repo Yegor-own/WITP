@@ -57,6 +57,7 @@ if (isset($_SESSION['search'])) $search = mysqli_query($connection, "SELECT * FR
                     $colors = ['#FF7567', '#FEC053', 'cyan', 'blue', 'darkorchid'];
                     $names = ['Музыка', 'Искусство', 'Наука', 'Спорт', 'Отдых'];
                     $cities = ['Екатеринбург', 'Москва', 'Санкт-Петербург', 'Новосибирск'];
+                    if ($event['author'] != $_SESSION['login']) {
                 ?>
                 <div class="event">
                     <div class="image"><img src="/event-background/<?php echo $event['img']; ?>" alt="Лого"></div>
@@ -65,11 +66,18 @@ if (isset($_SESSION['search'])) $search = mysqli_query($connection, "SELECT * FR
                     <div class="desc"><h4><?php echo $event['description']; ?></h4></div>
                     <div class="desc"><h4>Время:    <?php echo $event['time']; ?><span>       </span><?php echo $event['date']; ?></h4></div>
                     <div class="location"><h4>Город:    <?php echo $cities[$event['city']]; ?></h4></div>
-                    <?php if ($event['crowdfunding']) echo '<div class="croudfinding"><h4>Нужен донат</h4></div>';?>
+                    <?php
+                    if ($event['crowdfunding']) {
+                        $query = mysqli_query($connection, "SELECT * FROM `users` WHERE `login`='".$event['author']."'");
+                        $q = mysqli_fetch_assoc($query);
+                        echo '<div class="croudfinding"><h4>Нужен донат, карта автора '.$q['payment'].'</h4></div>';
+                    }
+                    ?>
                     <div class="author"><h4>Автор: <?php echo $event['author']; ?></h4><form action="config/div.php" method="post"><input type="hidden" name="author" value="<?php echo $event['author']; ?>"><button class="subscr" type="submit">Подписаться</button></form></div>
                     <form action="config/div.php" method="post"><input type="hidden" name="event" value="<?php echo $event['id']; ?>"><input name="sign" class="submit" type="submit" value="Записаться"></form><br>
                 </div>
                 <?php
+                    }
                 }
                 ?>
         </div>
@@ -111,7 +119,13 @@ if (isset($_SESSION['search'])) $search = mysqli_query($connection, "SELECT * FR
                 <div class="desc"><h4><?php echo $localevents['description']; ?></h4></div>
                 <div class="time"><h4>Время:    <?php echo $localevents['time']; ?><span>       </span><?php echo $localevents['date']; ?></h4></div>
                 <div class="location"><h4><?php echo $cities[$localevents['city']]; ?></h4></div>
-                <?php if ($localevents['crowdfunding']) echo '<div class="croudfinding"><h4>Нуужен донат</h4></div>';?>
+                <?php
+                if ($localevents['crowdfunding']) {
+                    $query = mysqli_query($connection, "SELECT * FROM `users` WHERE `login`='".$localevents['author']."'");
+                    $q = mysqli_fetch_assoc($query);
+                    echo '<div class="croudfinding"><h4>Нужен донат, карта автора '.$q['payment'].'</h4></div>';
+                }
+                ?>
                 <div class="author"><h4>Автор: <?php echo $localevents['author']; ?></h4><form action="config/div.php" method="post"><input type="hidden" name="author" value="<?php echo $localevents['author']; ?>"><button class="subscr" type="submit">Подписаться</button></form></div>
                 <form action="config/div.php" method="post"><input type="hidden" name="events" value="<?php echo $localevents['id']; ?>"><input name="sign" class="submit" type="submit" value="Записаться"></form><br>
             </div>
@@ -137,6 +151,13 @@ if (isset($_SESSION['search'])) $search = mysqli_query($connection, "SELECT * FR
                 <div class="desc"><h4><?php echo $result['description']; ?></h4></div>
                 <div class="time"><h4>Время:    <?php echo $result['time']; ?><span>       </span><?php echo $result['date']; ?></h4></div>
                 <div class="location"><h4><?php echo $cities[$result['city']]; ?></h4></div>
+                <?php
+                if ($result['crowdfunding']) {
+                    $query = mysqli_query($connection, "SELECT * FROM `users` WHERE `login`='".$result['author']."'");
+                    $q = mysqli_fetch_assoc($query);
+                    echo '<div class="croudfinding"><h4>Нужен донат, карта автора '.$q['payment'].'</h4></div>';
+                }
+                ?>
                 <div class="author"><h4>Автор: <?php echo $result['author']; ?></h4><form action="config/div.php" method="post"><input type="hidden" name="author" value="<?php echo $result['author']; ?>"><button class="subscr" type="submit">Подписаться</button></form></div>
                 <form action="config/div.php" method="post"><input type="hidden" name="events" value="<?php echo $result['id']; ?>"><input name="sign" class="submit" type="submit" value="Записаться"></form><br>
             </div>

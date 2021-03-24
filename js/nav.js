@@ -1,11 +1,11 @@
-let menuOpen = 0;
+let cubmenu = 0;
 
 $('.user').click(function() {
-    if(menuOpen == 0) {
-        menuOpen = 1;
+    if(cubmenu == 0) {
+        cubmenu = 1;
         $(".submenu").css("display", "block");
-    } else if(menuOpen == 1) {
-        menuOpen = 0;
+    } else if(cubmenu == 1) {
+        cubmenu = 0;
         $(".submenu").css("display", "none");
     }
 });

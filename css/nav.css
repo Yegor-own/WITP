@@ -133,9 +133,6 @@
 }
 
 @media(max-width: 1261px) {
-    .submenu {
-        display: block;
-    }
     .search {
         display: none;
     }

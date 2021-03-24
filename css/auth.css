@@ -1,5 +1,5 @@
 .rblock {
-    padding-top: 5%;
+    padding-top: 2%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -53,6 +53,34 @@
 }
 
 .subject li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.donat {
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 20px;
+    background-color: white;
+    border-radius: 10px;
+    height: 30px;
+    text-align: center;
+    color: #757575;
+}
+
+.donats {
+    border-radius: 5px;
+    background-color: transparent;
+    margin-top: 2px;
+    padding-left: 0;
+    display: none;
+    list-style: none;
+    text-align: center;
+}
+
+.donats li {
+    margin-top: 5px;
     display: flex;
     align-items: center;
     justify-content: center;

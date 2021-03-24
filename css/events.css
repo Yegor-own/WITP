@@ -68,7 +68,14 @@
 }
 
 .event {
+    padding: 0;
+    background-color: white;
     width: 45%;
+}
+
+.event button {
+    padding: 0;
+    background-color: white;
     background-size: 100%;
     border-radius: 20px;
     margin-top: 2%;
@@ -76,6 +83,10 @@
     text-align: center;
 }
 
+.desc {
+    padding-left: 1%;
+    padding-right: 1%;
+}
 
 .image img{
     border-top-left-radius: 20px;
