@@ -1,0 +1,132 @@
+.subjects { 
+    background-color: #EFEFEF;
+}
+
+.subjects ul {
+    margin: 0;
+    background-color: #EFEFEF;
+    list-style: none;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 30px 0 30px 0;
+}
+
+.subjects li {
+    padding-right: 30px;
+    padding-left: 30px;
+}
+
+.subjects li:not(:last-child) {
+    border-right: 2px solid black;
+}
+
+.subjects input {
+    border: none;
+    background: none;
+    font-size: 30px;
+}
+
+.active {
+    border-bottom: 2px solid black;
+}
+
+.eventsettings {
+    padding-top: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.eventsettings form {
+    display: flex;
+    flex-direction: column;
+    padding: 5%;
+    background: linear-gradient(#FFD4CD, #FEE8AF);
+    border-radius: 30px;
+}
+
+.eventsettings form select {
+    text-align-last: center;
+    color: #757575;
+    font-size: 20px;
+    border: none;
+    background-color: white;
+    height: 30px;
+    border-radius: 10px;
+}
+
+.eventsettings form textarea {
+    font-size: 20px;
+    border: none;
+    background-color: white;
+    height: 30px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.eventsettings form input {
+    font-size: 20px;
+    border: none;
+    background-color: white;
+    height: 30px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.eventsettings form button {
+    font-size: 30px;
+    font-weight: bolder;
+    border: none;
+    background: linear-gradient(0.25turn, #FF7567, #FEC053);
+    height: 50px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.chekbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chekbox label {
+    color: #757575;
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+
+.input__wrapper {
+    width: 100%;
+    position: relative; 
+    text-align: center;
+}
+
+.input__file {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+}
+
+
+.input__file-button {
+    height: 30px;
+    background: white;
+    color: #757575;
+    font-size: 20px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}

@@ -30,12 +30,13 @@
                         <li class="userbutton"><a href="new_event.php">Новое событие</a></li>
                         <li class="userbutton"><a href="settings.php">Настройки</a></li>
                         <li><form action="config/div.php" method="post"><input class="exit" name="exit" type="submit" value="Выйти"></form></li>
-                    </ul>
+                    </ul> 
                 </div>'; 
         } else {
             echo '<a class="auth" href="reg.php">Регистрация</a>';
             echo '<a class="auth" href="auth.php">Вход</a>';
         }
         ?>
-    </div>
+        <!-- SUCKTION -->
+    </div> 
 </nav>

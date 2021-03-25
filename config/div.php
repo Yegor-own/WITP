@@ -25,6 +25,7 @@ if (isset($_POST['login'])
             $_SESSION['login'] = $_POST['login'];
             $_SESSION['rec'] = true;
             $_SESSION['eve'] = true;
+            $_SESSION['tech'] = true;
             $_SESSION['subjects'] = explode(' ', $subject);
             $_SESSION['image'] = $_FILES['userimg']['name'];
             move_uploaded_file($_FILES['userimg']['tmp_name'], '../user-image/'.$_FILES['userimg']['name']);
@@ -51,6 +52,7 @@ if (isset($_GET['login']) and isset($_GET['password'])) {
         $_SESSION['login'] = $_GET['login'];
         $_SESSION['subjects'] = explode(' ', $f['subjects']);
         $_SESSION['image'] = $f['img'];
+        $_SESSION['tech'] = true;
         header("Location: /index.php");
         exit();
     } else {
@@ -224,6 +226,59 @@ if ($_GET['search']) {
 
 if ($_GET['event']) {
     $_SESSION['eventname'] = $_GET['event'];
+    header("Location: /event.php");
+    exit;
+}
+
+if ($_GET['tech']) {
+    $_SESSION['tech'] = true;
+    unset($_SESSION['eventsettings']);
+    header("Location: /event.php");
+    exit;
+}
+
+if ($_GET['eventsettings']) {
+    unset($_SESSION['tech']);
+    $_SESSION['eventsettings'] = true;
+    header("Location: /event.php");
+    exit;
+}
+
+if (!empty($_POST['subjectset'])
+    or !empty($_POST['titleset']) 
+    or !empty($_POST['descriptionset'])
+    or !empty($_POST['timeset'])
+    or !empty($_POST['dateset'])
+    or !empty($_FILES['imageset'])
+    or !empty($_POST['crowdfundingset'])) {
+    if (!empty($_POST['subjectset'])) {
+        mysqli_query($connection, "UPDATE `events` SET `subject`='".$_POST['subjectset']."' WHERE `title`='".$_SESSION['eventname']."'");
+    }
+    if (!empty($_POST['titleset'])) {
+        mysqli_query($connection, "UPDATE `events` SET `title`='".$_POST['titleset']."' WHERE `title`='".$_SESSION['eventname']."'");
+    }
+    if (!empty($_POST['descriptionset'])) {
+        mysqli_query($connection, "UPDATE `events` SET `description`='".$_POST['descriptionset']."' WHERE `title`='".$_SESSION['eventname']."'");
+    }
+    if (!empty($_POST['timeset'])) {
+        mysqli_query($connection, "UPDATE `events` SET `time`='".$_POST['timeset']."' WHERE `title`='".$_SESSION['eventname']."'");
+    }
+    if (!empty($_POST['dateset'])) {
+        mysqli_query($connection, "UPDATE `events` SET `date`='".$_POST['dateset']."' WHERE `title`='".$_SESSION['eventname']."'");
+    }
+    if (!empty($_POST['cityset'])) {
+        mysqli_query($connection, "UPDATE `events` SET `city`='".$_POST['cityset']."' WHERE `title`='".$_SESSION['eventname']."'");
+    }
+    if (!empty($_POST['crowdfundingset'])) {
+        if ($_POST['crowdfundingset']) $_POST['crowdfundingset'] = 1;
+        else $_POST['crowdfundingset'] = 0;
+        mysqli_query($connection, "UPDATE `events` SET `crowdfunding`='".$_POST['crowdfundingset']."' WHERE `title`='".$_SESSION['eventname']."'");
+    }
+    if (!empty($_FILES['imageset']['name'])) {
+        mysqli_query($connection, "UPDATE `events` SET `img`='".$_FILES['imageset']['name']."' WHERE `title`='".$_SESSION['eventname']."'");
+    }
+    $_SESSION['tech'] = true;
+    unset($_SESSION['eventsettings']);
     header("Location: /event.php");
     exit;
 }
