@@ -67,11 +67,7 @@ if (isset($_SESSION['search'])) $search = mysqli_query($connection, "SELECT * FR
                     <div class="desc"><h4>Время:    <?php echo $event['time']; ?><span>       </span><?php echo $event['date']; ?></h4></div>
                     <div class="location"><h4>Город:    <?php echo $cities[$event['city']]; ?></h4></div>
                     <?php
-                    if ($event['crowdfunding']) {
-                        $query = mysqli_query($connection, "SELECT * FROM `users` WHERE `login`='".$event['author']."'");
-                        $q = mysqli_fetch_assoc($query);
-                        echo '<div class="croudfinding"><h4>Нужен донат, карта автора '.$q['payment'].'</h4></div>';
-                    }
+                    if ($event['crowdfunding']) echo '<div class="croudfinding"><h4>Нужен донат</h4></div>';
                     ?>
                     <div class="author"><h4>Автор: <?php echo $event['author']; ?></h4><form action="config/div.php" method="post"><input type="hidden" name="author" value="<?php echo $event['author']; ?>"><button class="subscr" type="submit">Подписаться</button></form></div>
                     <form action="config/div.php" method="post"><input type="hidden" name="event" value="<?php echo $event['id']; ?>"><input name="sign" class="submit" type="submit" value="Записаться"></form><br>
@@ -88,7 +84,9 @@ if (isset($_SESSION['search'])) $search = mysqli_query($connection, "SELECT * FR
                 <?php
                 $s = mysqli_fetch_assoc($subs);
                 $tmp = explode(",", $s['subs']);
+                if (!empty($tmp[0])) {
                 foreach ($tmp as $key => $value) {
+                    if (empty($value)) continue;
                     $av = mysqli_query($connection, "SELECT * FROM `users` WHERE `login`='".$value."'");
                     $avatar = mysqli_fetch_assoc($av);
                 ?>
@@ -97,6 +95,7 @@ if (isset($_SESSION['search'])) $search = mysqli_query($connection, "SELECT * FR
                     <div class="avatar"><img src="user-image/<?php echo $avatar['img']; ?>" height="70px" width="70px" alt=""></div>
                 </div>
                 <?php
+                }
                 }
                 ?>
             </div>
@@ -120,11 +119,7 @@ if (isset($_SESSION['search'])) $search = mysqli_query($connection, "SELECT * FR
                 <div class="time"><h4>Время:    <?php echo $localevents['time']; ?><span>       </span><?php echo $localevents['date']; ?></h4></div>
                 <div class="location"><h4><?php echo $cities[$localevents['city']]; ?></h4></div>
                 <?php
-                if ($localevents['crowdfunding']) {
-                    $query = mysqli_query($connection, "SELECT * FROM `users` WHERE `login`='".$localevents['author']."'");
-                    $q = mysqli_fetch_assoc($query);
-                    echo '<div class="croudfinding"><h4>Нужен донат, карта автора '.$q['payment'].'</h4></div>';
-                }
+                if ($localevents['crowdfunding']) echo '<div class="croudfinding"><h4>Нужен донат</h4></div>';
                 ?>
                 <div class="author"><h4>Автор: <?php echo $localevents['author']; ?></h4><form action="config/div.php" method="post"><input type="hidden" name="author" value="<?php echo $localevents['author']; ?>"><button class="subscr" type="submit">Подписаться</button></form></div>
                 <form action="config/div.php" method="post"><input type="hidden" name="events" value="<?php echo $localevents['id']; ?>"><input name="sign" class="submit" type="submit" value="Записаться"></form><br>
@@ -152,11 +147,7 @@ if (isset($_SESSION['search'])) $search = mysqli_query($connection, "SELECT * FR
                 <div class="time"><h4>Время:    <?php echo $result['time']; ?><span>       </span><?php echo $result['date']; ?></h4></div>
                 <div class="location"><h4><?php echo $cities[$result['city']]; ?></h4></div>
                 <?php
-                if ($result['crowdfunding']) {
-                    $query = mysqli_query($connection, "SELECT * FROM `users` WHERE `login`='".$result['author']."'");
-                    $q = mysqli_fetch_assoc($query);
-                    echo '<div class="croudfinding"><h4>Нужен донат, карта автора '.$q['payment'].'</h4></div>';
-                }
+                if ($result['crowdfunding']) echo '<div class="croudfinding"><h4>Нужен донат</h4></div>';
                 ?>
                 <div class="author"><h4>Автор: <?php echo $result['author']; ?></h4><form action="config/div.php" method="post"><input type="hidden" name="author" value="<?php echo $result['author']; ?>"><button class="subscr" type="submit">Подписаться</button></form></div>
                 <form action="config/div.php" method="post"><input type="hidden" name="events" value="<?php echo $result['id']; ?>"><input name="sign" class="submit" type="submit" value="Записаться"></form><br>

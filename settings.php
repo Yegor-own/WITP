@@ -17,7 +17,8 @@ session_start();
     <?php require "nav.php"; ?>
     <main class="container rblock">
         <form action="config/div.php" method="post" enctype="multipart/form-data">
-            <div class="title">
+        <div class="title">
+                <?php if (!empty($_SESSION['error'])) echo $_SESSION['error']; ?>
                 <h1>Настройки</h1>
             </div>
             <input type="text" name="loginupdate" placeholder="Логин"><br>
@@ -37,7 +38,6 @@ session_start();
                     <span>Выберите аватар</span>
                 </label>
             </div><br>
-            <input type="text" name="pay" placeholder="Номер карты для доната"><br>
             <button type="submit">Далее</button>
         </form>
     </main>

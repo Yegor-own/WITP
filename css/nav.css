@@ -14,6 +14,10 @@
     font-size: 50px;
 }
 
+.title img {
+    display: none;
+}
+
 .location {
     margin-right: 2%;
 }
@@ -90,11 +94,16 @@
     width: 70px;
 }
 
+.avatar ul {
+    position: relative;
+}
+
 .avatar img {
     border-radius: 50%;
 }
 
 .submenu {
+    z-index: 10;
     width: 100px;
     border-radius: 5px;
     background: linear-gradient(0.25turn, #ff6f68, #feca51);
@@ -106,6 +115,7 @@
 }
 
 .submenu li {
+    z-index: 10;
     padding-top: 5px;
     padding-bottom: 5px;
 }
@@ -126,6 +136,10 @@
     border-bottom: 1px solid black;
 }
 
+.userbutton img {
+    display: none;  
+}
+
 .userbutton:hover {
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
@@ -133,11 +147,20 @@
 }
 
 @media(max-width: 1261px) {
-    .search {
+    .head {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        z-index: 10;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    .login {
         display: none;
     }
-    .head {
-        justify-content: center;
+    .search {
+        display: none;
     }
     .submenu {
         display: block;
@@ -145,7 +168,58 @@
     .location {
         display: none;
     }
-    .title {
+    .title span {
         display: none;
+    }
+    .title img {
+        display: block;
+    }
+    .avatar {
+        display: flex;
+        justify-content: space-between;
+    }
+    .avatar img {
+        display: none;
+    }
+    .submenu {
+        background: none;
+        padding-left: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        list-style: none;
+        text-align: center;
+    }
+    .submenu li {
+        display: flex;
+        align-items: center;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .exit {
+        background: none;
+    }
+    
+    .exit:hover {
+        background: none;
+    }
+    
+    .userbutton {
+        display: flex;
+        align-items: center;
+        border-bottom: none;
+    }
+    .userbutton:hover {
+        border-top-right-radius: 0;
+        border-top-left-radius: 0;
+        background: none;
+    }
+    .userbutton span {
+        display: none;
+    }
+    .userbutton img {
+        margin-right: 5px;
+        border-radius: 0;
+        display: block;
     }
 }

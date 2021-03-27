@@ -40,7 +40,7 @@ if (isset($_SESSION['eve'])) {
                 $colors = ['#FF7567', '#FEC053', 'cyan', 'blue', 'darkorchid'];
                 $names = ['Музыка', 'Искусство', 'Наука', 'Спорт', 'Отдых'];
             ?>
-            <div class="event">
+            <div class="event" style="border: 1px solid black; border-radius: 20px;">
                 <div class="image"><img src="/event-background/<?php echo $event['img']; ?>" alt="Лого"></div>
                 <div class="subject" style="background-color: <?php echo $colors[$event['subject']]; ?>"><span><?php echo $names[$event['subject']]; ?></span></div>
                 <div class="title"><h2><?php echo $event['title']; ?></h2></div>
@@ -62,7 +62,7 @@ if (isset($_SESSION['eve'])) {
                 $names = ['Музыка', 'Искусство', 'Наука', 'Спорт', 'Отдых'];
             ?>
             <form class="event" action="config/div.php" method="get">
-                <button type="submit" name="event" value="<?php echo $event['title']; ?>">
+                <button class="eventyb" type="submit" name="event" value="<?php echo $event['title']; ?>">
                     <div class="image"><img src="/event-background/<?php echo $event['img']; ?>" alt="Лого"></div>
                     <div class="subject" style="background-color: <?php echo $colors[$event['subject']]; ?>"><span><?php echo $names[$event['subject']]; ?></span></div>
                     <div class="title"><h2><?php echo $event['title']; ?></h2></div>

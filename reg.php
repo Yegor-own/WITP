@@ -14,7 +14,8 @@
     <?php require "nav.php"; ?>
     <main class="container rblock">
         <form action="config/div.php" method="post" enctype="multipart/form-data">
-            <div class="title">
+        <div class="title">
+                <?php if (!empty($_SESSION['error'])) echo $_SESSION['error']; ?>
                 <h1>Регистрация</h1>
             </div>
             <input type="text" name="login" placeholder="Логин"><br>
@@ -36,7 +37,6 @@
                     <span>Выберите аватар</span>
                 </label>
             </div><br>
-            <input type="text" name="pay" placeholder="Номер карты для доната"><br>
             <button type="submit">Далее</button>
         </form>
     </main><br><br>

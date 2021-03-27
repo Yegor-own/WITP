@@ -68,6 +68,7 @@
 }
 
 .event {
+    z-index: 2;
     width: 45%;
     background-size: 100%;
     border-radius: 20px;
@@ -147,5 +148,20 @@
 @media(max-width: 1261px) {
     .subjects {
         margin-top: 500px;
+    }
+    .event {
+        width: 100%;
+        margin-left: 2%;
+        margin-right: 2%;
+    }
+    .subjects { 
+        width: 100%;
+    }
+    .subjects ul {
+        padding: 1% 0 1% 0;
+    }
+    .subjects li {
+        padding-right: 1%;
+        padding-left: 1%;
     }
 }

@@ -1,6 +1,6 @@
 <nav class="head container">
     <div class="title">
-        <h1><a href="/index.php">WHERE IS THE PARTY</a></h1>
+        <h1><a href="/index.php"><span>WHERE IS THE PARTY</span><img src="img/home.png" alt="" height="70px"></a></h1>
     </div>
     <div class="location">
         <form action="config/div.php" method="get">
@@ -26,9 +26,9 @@
             echo '<div class="avatar">
                     <img src="/user-image/'.$_SESSION['image'].'" alt="" height="70px" width="70px">
                     <ul class="submenu">
-                        <li class="userbutton"><a href="events.php">События</a></li>
-                        <li class="userbutton"><a href="new_event.php">Новое событие</a></li>
-                        <li class="userbutton"><a href="settings.php">Настройки</a></li>
+                        <li class="userbutton"><a href="events.php"><span>События</span><img src="img/event.png" height="50px"></a></li>
+                        <li class="userbutton"><a href="new_event.php"><span>Новое событие</span><img src="img/add.png" height="50px"></a></li>
+                        <li class="userbutton"><a href="settings.php"><span>Настройки</span><img src="img/settings.jpg" height="50px"></a></li>
                         <li><form action="config/div.php" method="post"><input class="exit" name="exit" type="submit" value="Выйти"></form></li>
                     </ul> 
                 </div>'; 
@@ -37,6 +37,5 @@
             echo '<a class="auth" href="auth.php">Вход</a>';
         }
         ?>
-        <!-- SUCKTION -->
     </div> 
 </nav>
